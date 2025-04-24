@@ -1,31 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+ namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+ use Illuminate\Support\Facades\Http;
+ use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
-{
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string',
-        ]);
+ class FeedBackController extends Controller
+ {
+     public function store(Request $request)
+     {
+         $validated = $request->validate([
+             'name' => 'required|string|max:255',
+             'email' => 'required|email|max:255',
+             'message' => 'required|string',
+         ]);
 
-        $response = Http::post('https://hook.us2.make.com/1gouuj1ow165dbhd3xxjj1hl8k2w0wd6', [
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'message' => $validated['message'],
-        ]);
+         $response = Http::post('https://hook.eu2.make.com/aw8lej84bg6zu5ukpu2aywgc3fqmtmvf', [
+             'name' => $validated['name'],
+             'email' => $validated['email'],
+             'message' => $validated['message'],
+         ]);
 
-        return response()->json([
-            'message' => $response->successful()
-                ? 'Thank you for yoour feedback!'
-                : 'Failed to submit feedback',
-            'success' => $response->successful()
-        ], $response->status());
-    }
-}
+         return response()->json([
+             'message' => $response->successful()
+                 ? 'Thank you for your feedback!'
+                 : 'Failed to submit feedback',
+             'success' => $response->successful()
+         ], $response->status());
+     }
+ }
